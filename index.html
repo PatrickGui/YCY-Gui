@@ -5,6 +5,64 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<style type="text/css">
+		/* 导航栏样式 */
+		nav {
+            background: linear-gradient(90deg, #f06292, #f8bbd0);
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%; /* 确保导航栏宽度为100% */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            margin-left: 20px; /* 调整左侧间距 */
+        }
+
+        .logo a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* 调整导航栏右侧间距 */
+        nav ul {
+            margin-right: 20px;
+        }
+        /* 页面内容顶部留出空间 */
+        body > section {
+            padding-top: 80px;
+        }
 		@font-face {
 			font-family: digit;
 			src: url('digital.ttf') format("truetype");
@@ -17,20 +75,29 @@
 </head>
 
 <body>
-<div id="mainDiv">
+<!-- 美观的导航栏 -->
+<nav>
+	<div class="logo">
+		<a href="#">MyLove</a>
+	</div>
+	<ul>
+		<li><a href="love_hack.html">💗请点我，元旦快乐！</a></li>
+	</ul>
+</nav>
+<div id="mainDiv" style="margin-top: 80px;">
 	<div id="content">
 		<div id="code">
 			<span class="comments">##</span><br/>
 			<span class="comments"># I am a programmer,</span><br/>
 			<span class="comments"># so I write code to celebrate Valentine's Day in coder's way.</span><br/>
 			<span class="comments">##</span><br/>
-			i = Boy(<span class="string">"Qingcai Cui"</span>);<br/>
-			u = Girl(<span class="string">"Qian Ma"</span>);<br/>
-			<span class="comments"># Oct 14, 2018, I meet you because of PyCon 2018. </span><br/>
+			i = Boy(<span class="string">"Penghui Gui"</span>);<br/>
+			u = Girl(<span class="string">"Chunya Yu"</span>);<br/>
+			<span class="comments"># May 06, 2023, I meet you because of Luhan. </span><br/>
 			i.meet(u)<br/>
 			<span class="comments"># Afterwards, I confessed to you. </span><br/>
 			i.confess(u)<br/>
-			<span class="comments"># Nov 5, 2018, You became my girlfriend.</span><br/>
+			<span class="comments"># Aug 26, 2023, You became my girlfriend.</span><br/>
 			u.accepted(i)<br/>
 			<span class="comments"># Since then, we spent harmony happiness life every day.</span><br/>
 			happy(u, i)<br/>
@@ -62,18 +129,18 @@
 			<canvas id="garden"></canvas>
 			<div id="words">
 				<div id="messages">
-					Qian, I have fallen in love with you for
+					Chunya, I have fallen in love with you for
 					<div id="elapseClock"></div>
 				</div>
 				<div id="loveu">
 					Love u forever and ever.<br/>
-					<div class="signature">- Qingcai Cui | Germey</div>
+					<div class="signature">- Penghui Gui | patrick</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div id="copyright">
-		Copyright © 2020 <a href='http://cuiqingcai.com'>cuiqingcai.com</a> 2014-2020
+		Copyright © 2024 <a href='https://www.yuque.com/u12443071/sd1cnp/nhna9sfy7i18g1gh'>Yu&Gui.com</a> 2023-forever
 	</div>
 </div>
 <script type="text/javascript">
@@ -81,7 +148,7 @@
 	var offsetY = $("#loveHeart").height() / 2 - 55;
 	var together = new Date();
 	// 此处月份介于 0 ~ 11 之间。用本地时间表示，如 8 月要用 7 表示。
-	together.setFullYear(2018, 10, 5);
+	together.setFullYear(2023, 7, 26);
 	together.setHours(15);
 	together.setMinutes(0);
 	together.setSeconds(0);

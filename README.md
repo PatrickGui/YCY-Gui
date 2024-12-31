@@ -1,2 +1,2 @@
 # My Love Story
-Site: http://love.cuiqingcai.com/
+Site: https://patrickgui.github.io/YCY-Gui/
