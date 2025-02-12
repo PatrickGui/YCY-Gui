@@ -6,6 +6,48 @@ body {
     overflow: auto
 }
 
+/*下拉框样式 */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown .arrow {
+    font-size: 12px;
+    color: #fbfafa; /* 粉色箭头 */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(253, 201, 209, 0.6); /* 浅粉色背景，添加透明度 */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 8px; /* 添加圆角 */
+}
+
+.dropdown-content a {
+    color: #ff66b2; /* 粉色文字 */
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    font-size: 6px; /* 调整文字大小 */
+    font-family: 'Arial', sans-serif; /* 设置字体 */
+    white-space: nowrap; /* 确保文字在一行显示 */
+    transition: background-color 0.3s ease; /* 添加过渡效果 */
+}
+
+.dropdown-content a:hover {
+    background-color: #f06292; /* 浅粉色悬停背景 */
+    color: #0b0000; /* 悬停时文字颜色 */
+    border-radius: 8px; /* 添加圆角 */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 /* 导航栏样式 */
 nav {
     background: linear-gradient(90deg, #f06292, #f8bbd0);

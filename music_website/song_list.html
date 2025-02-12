@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的音乐歌单</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .playlist-header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .song-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .song-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: #2d2d2d;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .song-item:hover {
+            transform: translateX(10px);
+            background-color: #3d3d3d;
+        }
+
+        .album-cover {
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .song-info {
+            flex: 1;
+        }
+
+        .song-title {
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .song-artist {
+            color: #95a5a6;
+            font-size: 0.9em;
+        }
+
+        .play-button {
+            padding: 8px 20px;
+            background-color: #3498db;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .play-button:hover {
+            background-color: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .song-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .album-cover {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="playlist-header">
+            <h1>我的精选歌单</h1>
+            <p>🎵 30首歌曲 · ⏱ 2小时15分钟 · 👤 创建者：音乐达人</p>
+        </header>
+        <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=113510063282143&bvid=BV1fmScYYEog&cid=26845318789&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+
+        <div class="song-list" id="songList">
+            <!-- 歌曲列表将通过JavaScript动态生成 -->
+        </div>
+    </div>
+
+    <script>
+        // 歌单数据
+        const songs = [
+            {
+                title: "夜空中最亮的星",
+                artist: "逃跑计划",
+                album: "世界",
+                cover: "https://picsum.photos/100/100?random=1",
+                url: "#"
+            },
+            {
+                title: "晴天",
+                artist: "周杰伦",
+                album: "叶惠美",
+                cover: "https://picsum.photos/100/100?random=2",
+                url: "#"
+            },
+            {
+                title: "Hotel California",
+                artist: "Eagles",
+                album: "Hell Freezes Over",
+                cover: "https://picsum.photos/100/100?random=3",
+                url: "#"
+            },
+            {
+                title: "海阔天空",
+                artist: "Beyond",
+                album: "乐与怒",
+                cover: "https://picsum.photos/100/100?random=4",
+                url: "#"
+            }
+        ];
+
+        // 动态生成歌曲列表
+        function renderSongList() {
+            const songList = document.getElementById('songList');
+            songList.innerHTML = songs.map(song => `
+                <div class="song-item">
+                    <img src="${song.cover}" alt="${song.album}" class="album-cover">
+                    <div class="song-info">
+                        <div class="song-title">${song.title}</div>
+                        <div class="song-artist">${song.artist} - ${song.album}</div>
+                    </div>
+                    <button class="play-button" onclick="playSong('${song.url}')">播放</button>
+                </div>
+            `).join('');
+        }
+
+        // 播放歌曲函数
+        function playSong(url) {
+            // 这里可以添加实际的播放逻辑
+            alert('开始播放：' + url);
+        }
+
+        // 初始化
+        renderSongList();
+    </script>
+</body>
+</html>
