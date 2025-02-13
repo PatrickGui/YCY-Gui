@@ -10,24 +10,20 @@ header {
     padding: 20px;
     color: #fff;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 header .logo h1 {
     margin: 0;
     font-size: 2.5em;
-    font-family: 'Courier New', Courier, monospace;
-    letter-spacing: 2px;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
-    margin: 20px 0 0;
+    margin: 0;
     display: flex;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 8px;
 }
 
 nav ul li {
@@ -38,33 +34,14 @@ nav ul li a {
     color: #fff;
     text-decoration: none;
     font-size: 18px;
-    padding: 10px 20px;
-    display: block;
-    transition: background-color 0.3s ease;
 }
 
 nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
+    text-decoration: underline;
 }
 
 main {
     padding: 20px;
-}
-
-.intro {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.intro h2 {
-    font-size: 2em;
-    color: #ff758c;
-}
-
-.intro p {
-    font-size: 1.2em;
-    color: #555;
 }
 
 .song-list {
@@ -107,16 +84,6 @@ main {
     border-radius: 4px;
 }
 
-iframe {
-    width: 100%;
-    height: 200px;
-    border: none;
-    border-radius: 8px;
-    margin-top: 15px;
-    z-index: 1;
-    pointer-events: auto;
-}
-
 /* 新增心跳动画 */
 @keyframes heartbeat {
     0%, 100% {
@@ -129,6 +96,82 @@ iframe {
 
 .song-item:hover .love-note {
     animation: heartbeat 1s infinite;
+}
+.song-title {
+    font-size: 2.5em;
+    color: #ff758c;
+    margin-bottom: 10px;
+}
+
+.song-description {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.song-review {
+    font-size: 1.1em;
+    color: #333;
+    font-style: italic;
+    background-color: #ffecf1;
+    border-left: 5px solid #ff758c;
+    padding: 10px 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 8px;
+}
+
+.player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+    padding: 10px;
+    box-shadow: 0 -4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+}
+
+audio {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+}
+
+
+#lyrics {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #333;
+    text-align: center;
+}
+
+#lyric-list {
+    list-style: none;
+    padding: 0;
+}
+
+#lyric-list li {
+    margin: 5px 0;
+}
+
+.highlight {
+    font-style: italic;
+    color: #ff758c;
+    background-color: #ffe6f0;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+iframe {
+    width: 100%;
+    height: 200px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
 }
 
 footer {

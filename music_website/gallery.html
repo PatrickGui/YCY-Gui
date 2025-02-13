@@ -1,39 +1,271 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <title>Gallery - Music Website</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>专属音乐播放器 | 我们的旋律</title>
+    <style>
+        :root {
+            --primary: #ff7eb3;
+            --secondary: #ff758c;
+            --text: #2d2d2d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(45deg, #fff5f5, #fff0f7);
+            font-family: 'Microsoft YaHei', sans-serif;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 心跳波纹动画 */
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        .visualizer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart-particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .player-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .album-art {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            overflow: hidden;
+            box-shadow: 0 12px 24px rgba(255, 126, 179, 0.3);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .album-art img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: rotate 20s linear infinite;
+            animation-play-state: paused;
+        }
+
+        .playing .album-art img {
+            animation-play-state: running;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .song-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .song-title {
+            font-size: 1.8rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .song-artist {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .lyrics-box {
+            height: 200px;
+            overflow-y: auto;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            scroll-behavior: smooth;
+        }
+
+        .lyric-line {
+            padding: 0.5rem;
+            transition: all 0.3s;
+            color: #666;
+            text-align: center;
+        }
+
+        .lyric-line.active {
+            color: var(--primary);
+            transform: scale(1.05);
+            font-weight: 600;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: #eee;
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+            width: 0;
+            transition: width 0.1s linear;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.8rem;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: rgba(255, 126, 179, 0.1);
+        }
+
+        .play-btn {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .player-container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .album-art {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <h1>Music World</h1>
+    <!-- 动态背景 -->
+    <div class="visualizer" id="visualizer"></div>
+
+    <!-- 播放器主体 -->
+    <div class="player-container">
+        <!-- 专辑封面 -->
+        <div class="album-art">
+            <img src="https://example.com/album-cover.jpg" alt="专辑封面">
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropbtn">Gallery</a>
-                    <div class="dropdown-content">
-                        <a href="gallery.html">Photos</a>
-                        <a href="videos.html">Videos</a>
-                    </div>
-                </li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section class="content">
-            <h2>Gallery</h2>
-            <p>Check out our latest photos and videos from various music events and concerts.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 Music World. All rights reserved.</p>
-    </footer>
+
+        <!-- 歌曲信息 -->
+        <div class="song-info">
+            <h1 class="song-title">情歌</h1>
+            <div class="song-artist">梁静茹</div>
+        </div>
+
+        <!-- 歌词区域 -->
+        <div class="lyrics-box" id="lyricsBox">
+            <div class="lyric-line">[00:00.00] 前奏...</div>
+            <div class="lyric-line">[00:15.00] 时光是琥珀 泪一滴滴被反锁</div>
+            <!-- 更多歌词... -->
+        </div>
+
+        <!-- 播放控制 -->
+        <div class="controls">
+            <div class="progress-bar" id="progressBar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="time-display">
+                <span id="currentTime">00:00</span>
+                <span id="duration">04:30</span>
+            </div>
+            <div class="control-buttons">
+                <button class="play-btn">▶</button>
+                <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 动态生成背景粒子
+        function createParticles() {
+            const visualizer = document.getElementById('visualizer');
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart-particle';
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = `${Math.random() * 100}%`;
+                visualizer.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 2000);
+            }, 300);
+        }
+
+        // 播放控制逻辑
+        const player = {
+            isPlaying: false,
+            togglePlay() {
+                const albumArt = document.querySelector('.album-art');
+                this.isPlaying = !this.isPlaying;
+                albumArt.classList.toggle('playing', this.isPlaying);
+                document.querySelector('.play-btn').textContent = 
+                    this.isPlaying ? '⏸' : '▶';
+            }
+        };
+
+        // 事件监听
+        document.querySelector('.play-btn').addEventListener('click', () => player.togglePlay());
+        
+        // 初始化
+        createParticles();
+    </script>
 </body>
 </html>

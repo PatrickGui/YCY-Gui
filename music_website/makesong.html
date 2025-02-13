@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>为你写歌</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Your Songs</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">初见到永远</a></li>
+                <li><a href="makesong.html">为你写歌</a></li>
+                <li><a href="continue.html">懂你推荐</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="content">
+            <blockquote class="song-review">"这是我为你作的一首歌，一首关于成长的歌曲，表达了成长的不同阶段，展现了坚强、自信、坚持做自己的你。永远爱你，我的宝贝！"
+                -----它的名字叫《星茧》
+            </blockquote>
+            <div id="lyrics">
+                <ul id="lyric-list"></ul>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Your Music. All rights reserved.</p>
+    </footer>
+    <div class="player">
+        <audio id="audio" controls>
+            <source src="music/xing.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    <script src="js/lyrics.js"></script>
+    <script src="js/visualizer.js"></script>
+</body>
+</html>
